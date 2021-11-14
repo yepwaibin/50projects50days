@@ -1,0 +1,113 @@
+/* :root css伪类，代表<html>元素 声明全局css变量时，:root很有用 */
+:root {
+  --line-border-fill: #3498db;
+  --line-border-empty: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f6f7fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+/* 对于伪元素的使用：使得html更加语义化。有些时候，
+为了某些特定的展现，不得不添加用于辅助布局的无意义html元素，
+这两个伪元素能实际起到这种辅助布局的作用，
+而又不增加无意义纯布局html元素，所以html就更简洁更纯粹了。 */
+
+/* 设置进度条的线 */
+.progress-container::before {
+  content: "";
+  background-color: var(--line-border-empty);
+  /* 把线调调整中间 */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+  height: 4px;
+  width: 100%;
+  /* z轴越大，越在页面上方 */
+  z-index: -1;
+}
+
+/* 蓝色进度条 */
+.progress {
+  background-color: var(--line-border-fill);
+  /* 把线调调整中间 */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.circle {
+  background-color: #fff;
+  color: #999;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: 0.4s ease;
+}
+
+.circle.active {
+  border-color: var(--line-border-fill);
+}
+
+.btn {
+  background-color: var(--line-border-fill);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+/* avtive代表被用户激活的元素，代表的是用户按下按键和松开按键之间的时间 */
+/* 给按钮增加一点点击感 */
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* outline和border很相似，但不同点在于outline不占据空间，绘制于元素内容周围。 */
+/* 正常情况下，button聚焦后会有黑色边框 */
+.btn:focus {
+  outline: 0;
+}
+
+.btn:disabled {
+  background-color: var(--line-border-empty);
+  cursor: not-allowed;
+}
