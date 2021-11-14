@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+  /* 不要有滑动条 */
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+}
+
+.panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 10px;
+  position: relative;
+  transition: all 700ms ease-in;
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.panel.active {
+  /* flex三个属性 flex-grow(默认值为0) flex-shink(默认值为1，可选项)
+   flex-basis(默认值auto 可选项) */
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  /* ease-in 慢开始快结束 ease-out快开始慢结束 ease-in-out 先慢后快再慢 
+  linear线性变化，动画中应避免使用这个，因为感觉不自然 */
+  transition: opacity 0.3s ease-in 0.4s;
+}
